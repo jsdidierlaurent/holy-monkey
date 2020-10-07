@@ -7,29 +7,33 @@ import (
 
 const HolyBible = `In the beginning God created the heaven and the earth.`
 
+// fastest random function
 var randomFunction = RandomVFastrand
 
 func main() {
-	index := 0
-	longuer := 0
+	// Init counters
+	bibleIndex := 0
+	longerIndex := 0
 	var iteration int64 = 0
-	startedAt := time.Now()
 
+	// Init logger
+	startedAt := time.Now()
 	go func() {
 		for range time.NewTicker(time.Second).C {
 			fmt.Printf("Tick: %d randomized character in %s\n", iteration, time.Since(startedAt))
 		}
 	}()
 
+	// Write the bible with super fast monkey !!
 	for {
-		if HolyBible[index] == RandomizedCharacter(randomFunction) {
-			index++
-		} else if index != 0 {
-			if index > longuer {
-				fmt.Printf("Randomized Bible: %s\n", HolyBible[:index])
-				longuer = index
+		if HolyBible[bibleIndex] == RandomizedCharacter(randomFunction) {
+			bibleIndex++
+		} else if bibleIndex != 0 {
+			if bibleIndex > longerIndex {
+				fmt.Printf("Randomized Bible: %s\n", HolyBible[:longerIndex])
+				longerIndex = bibleIndex
 			}
-			index = 0
+			bibleIndex = 0
 		}
 
 		iteration++
